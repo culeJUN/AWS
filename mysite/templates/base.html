@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}Django Web Programming{% endblock %}</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    {% block extra-style %}{% endblock %}
+</head>
+
+<body style="padding-top:90px;">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <span class="navbar-brand mx-5 mb-0 font-weight-bold">현성이의 홈페이지</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item mx-1 btn btn-primary">
+                <a class="nav-link text-white" href="{% url 'home' %}">홈</a></li>
+            <li class="nav-item mx-1 btn btn-primary">
+                <a class="nav-link text-white" href="{% url 'bookmark:index' %}">신문 스크랩</a></li>
+            <li class="nav-item mx-1 btn btn-primary">
+                <a class="nav-link text-white" href="{% url 'blog:index' %}">일기</a></li>
+            <li class="nav-item mx-1 btn btn-primary">
+                <a class="nav-link text-white" href="{% url 'photo:index' %}">사진</a></li>
+
+            <li class="nav-item dropdown mx-1 btn btn-primary">
+                <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">추가</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'bookmark:add' %}">신문 스크랩</a>
+                    <a class="dropdown-item" href="{% url 'blog:add' %}">일기</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'photo:album_add' %}">앨범</a>
+                    <a class="dropdown-item" href="{% url 'photo:photo_add' %}">사진</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown mx-1 btn btn-primary">
+                <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">수정</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'bookmark:change' %}">신문 스크랩</a>
+                    <a class="dropdown-item" href="{% url 'blog:change' %}">일기</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'photo:album_change' %}">앨범</a>
+                    <a class="dropdown-item" href="{% url 'photo:photo_change' %}">사진</a>
+                </div>
+            </li>
+        </ul>
+
+        </form>
+        <ul class="navbar-nav ml-5 mr-5">
+            <li class="nav-item dropdown mx-1 btn btn-primary">
+                {% if user.is_active %}
+                <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">
+            	    <i class="fas fa-user"></i>&ensp;{% firstof user.get_short_name user.get_username %}&ensp;</a>
+                <div class="dropdown-menu">
+            	    <a class="dropdown-item" href="{% url 'logout' %}">로그아웃</a>
+            	    <a class="dropdown-item" href="{% url 'password_change' %}">비밀번호 변경</a>
+                </div>
+                {% else %}
+                <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">
+            	    <i class="fas fa-user"></i>&ensp;Anonymous&ensp;</a>
+                <div class="dropdown-menu">
+            	    <a class="dropdown-item" href="{% url 'login' %}">로그인</a>
+            	    <a class="dropdown-item" href="{% url 'register' %}">회원가입</a>
+                </div>
+                {% endif %}
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+
+{% block footer %}{% endblock %}
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/c998a172fe.js"></script>
+
+{% block extra-script %}{% endblock %}
+
+</body>
+</html>
+

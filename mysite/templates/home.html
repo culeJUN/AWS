@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}home.html{% endblock %}
+
+{% block extra-style %}
+<style type="text/css">
+.home-image {
+    background-image: url("{% static 'img/me.jpg' %}");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    height: 500px;
+    border-top: 10px solid #ccc;
+    border-bottom: 10px solid #ccc;
+    padding: 20px 0 0 20px;
+}
+.title {
+    color: #cc0;
+    font-weight: bold;
+}
+.powered {
+    position: relative;
+    top: 77%;
+    color: #c80;
+    font-style: italic;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+    <div class="home-image">
+        <h2 class="title">현성이의 홈페이지에 온 것을 환영합니다.</h2>
+        <h4 class="powered"><i class="fas fa-arrow-circle-right"></i> Django를 활용한 웹페이지</h4>
+    </div>
+
+    <hr style="margin: 10px 0;">
+
+    <div class="row text-center">
+        <div class="col-sm-4">
+            <h3>신문 스크랩</h3>
+            <p>평소 관심있는 분야의 신문을 스크랩 해놨습니다. URL 링크도 있으니 기사도 꼭 읽어보세요.</p>
+        </div>
+        <div class="col-sm-4">
+            <h3>일기</h3>
+            <p>소소한 일상을 끄적여놓은 저만의 공간입니다.</p>
+        </div>
+        <div class="col-sm-4">
+            <h3>사진</h3>
+            <p>직접찍은 사진을 전시해둔 공간입니다.</p>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block footer %}
+<footer class="fixed-bottom bg-info">
+    <div class="text-white font-italic text-right mr-5">Copyright &copy; 2021 Django by jun hyunsung</div>
+</footer>
+{% endblock %}
+
